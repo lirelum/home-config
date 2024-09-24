@@ -21,15 +21,15 @@ in {
         which
         btop
         lsof
-        (discord.override
-          {
-            withVencord = true;
-            withOpenASAR = true;
-          })
       ]
       ++ (
         if config.homecfg.linux
         then [
+          (discord.override
+            {
+              withVencord = true;
+              withOpenASAR = true;
+            })
           (config.homecfg.nixGLWrap config.homecfg.pkgs-unstable.zotero)
         ]
         else []
