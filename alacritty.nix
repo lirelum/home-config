@@ -16,9 +16,7 @@ in {
     programs.alacritty = {
       enable = true;
       package =
-        if config.homecfg.linux
-        then nixGLWrap pkgs.alacritty
-        else pkgs.alacritty;
+        mkIf config.homecfg.linux (nixGLWrap pkgs.alacritty);
       settings = {
         env.TERM = "xterm-256color";
         shell.program = "${pkgs.zellij}/bin/zellij";
