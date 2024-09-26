@@ -30,7 +30,7 @@ in {
               withVencord = true;
               withOpenASAR = true;
             })
-          (config.homecfg.nixGLWrap config.homecfg.pkgs-unstable.zotero)
+          (pkgs.nixGLWrap pkgs.unstable.zotero)
         ]
         else []
       );

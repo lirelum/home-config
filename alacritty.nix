@@ -4,7 +4,6 @@
   pkgs,
   ...
 }: let
-  inherit (config.homecfg) nixGLWrap;
   inherit (lib) mkEnableOption mkIf;
   cfg = config.homecfg.alacritty;
 in {
@@ -16,7 +15,7 @@ in {
     programs.alacritty = {
       enable = true;
       package =
-        mkIf config.homecfg.linux (nixGLWrap pkgs.alacritty);
+        mkIf config.homecfg.linux (pkgs.nixGLWrap pkgs.alacritty);
       settings = {
         env.TERM = "xterm-256color";
         shell.program = "${pkgs.zellij}/bin/zellij";

@@ -51,23 +51,16 @@
           ./helix.nix
           ./shell.nix
           ./misc.nix
+          ./overlays.nix
         ];
         options.homecfg = {
           inputs = lib.mkOption {};
-          pkgs-unstable = lib.mkOption {};
-          nixGLWrap = lib.mkOption {};
           linux = lib.mkEnableOption "linux profile";
           darwin = lib.mkEnableOption "darwin profile";
         };
         config = {
           homecfg = {
             inherit inputs;
-            pkgs-unstable = import inputs.unstable {
-              system = pkgs.system;
-              config.allowUnfree = true;
-            };
-            nixGLWrap = import ./nixgl.nix {inherit inputs pkgs;};
-
             alacritty.enable = true;
             fonts.enable = true;
             git.enable = true;
